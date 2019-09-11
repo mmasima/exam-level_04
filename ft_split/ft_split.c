@@ -6,28 +6,38 @@ char 	ft_isblank(char c)
 	return (c == ' ' || c == '\n' || c == '\t');
 }
 
+int		ft_strlen(char *str)
+{
+	int x = 0;
+	while (str[x])
+		x++;
+	return x;
+}
+
 char    **ft_split(char *str)
 {
 	int len;
+	int y;
 	int x;
 	int word = 0;
 	char **res;
 
-	len = 0;
+	len = ft_strlen(str);
+	y = 0;
 	x = 0;
-	if(!(res = (char **)malloc(sizeof(char *) * 2048)))
+	if(!(res = (char **)malloc(sizeof(char *) * len)))
 		return (NULL);
 	while(str[x] && ft_isblank(str[x]))
 		x++;
 	while(str[x])
 	{
-		len = 0;
-		if (!(res[word] = (char *)malloc(sizeof(char) * 2048)))
+		y = 0;
+		if (!(res[word] = (char *)malloc(sizeof(char) * len)))
 			return(NULL);
 		while(str[x] && !(ft_isblank(str[x])))
 		{
-			res[word][len] = str[x];
-			len++;
+			res[word][y] = str[x];
+			y++;
 			x++;
 		}
 		while(str[x] && ft_isblank(str[x]))
