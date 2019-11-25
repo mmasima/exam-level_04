@@ -17,6 +17,7 @@ char	*ft_itoa(int nbr)
 		len++;
 	}
 	res = (char *)malloc(sizeof(char) * len);
+	res[len] = '\0';
 	if(nbr < 0)
 	{
 		res[0] = '-';
